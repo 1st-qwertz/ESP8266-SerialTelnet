@@ -22,13 +22,15 @@ const char* update_password = "admin";
 WiFiServer server(23);
 WiFiClient serverClient;
 
-int RESET_PIN = 0; // = GPIO0 on nodeMCU
+//int RESET_PIN = 0; // = GPIO0 on nodeMCU
+int RESET_PIN = 4; // = GPIO4 on Witty
 WiFiManager wifiManager;
 
 void setup()
 {
 	Serial.setRxBufferSize(1024); //require ESP8266 >= 2.4.0 https://github.com/esp8266/Arduino/releases/tag/2.4.0-rc1
-	Serial.begin(115200);
+ // Serial.begin(115200);
+	Serial.begin(9600);
 
     delay(5000); //BOOT WAIT
     pinMode(RESET_PIN, INPUT_PULLUP);
@@ -81,5 +83,3 @@ void ManageConnected()
         serverClient.write(sbuf, txlen);
 	}
 }
-
-
